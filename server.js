@@ -11,6 +11,7 @@ var schedule;
 
 function noteFactory(title, attr) {
     return function() {
+        console.log("pushing notification for", title);
         pusher.note("", title, schedule["shmera"][attr]["kyriosPiata"], function(err, res) {
             if (err) {
                 console.log(err);
@@ -27,6 +28,7 @@ request({
 }, function(err, res, body) {
     if (!err && res.statusCode == 200) {
         schedule = body;
+        console.log("fetched schedule from", process.env.SITISI_API_URL);
     }
 });
 
