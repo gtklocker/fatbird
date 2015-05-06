@@ -9,7 +9,7 @@
   "dependencies": {
     "cron": "git://github.com/ncb000gt/node-cron.git",
     "express": "^4.12.3",
-    "pushbullet": "^1.4.3",
-    "request": "^2.55.0"
+    "request": "^2.55.0",
+    "twilio": "^2.1.0"
   }
 }
