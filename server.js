@@ -3,6 +3,7 @@ var PushBullet = require("pushbullet");
 var CronJob = require("cron").CronJob;
 var pusher = new PushBullet(process.env.PUSHBULLET_ACCESS_TOKEN);
 
+var MORNING = "0 0 9 * * *";
 var LUNCH = "0 0 11 * * *";
 var SUPPER = "0 0 17 * * *";
 var TIMEZONE = "Europe/Athens";
@@ -65,5 +66,6 @@ function requestMeals() {
 }
 
 requestMeals();
+new CronJob(MORNING, requestMeals, null, true, TIMEZONE);
 new CronJob(LUNCH, noteFactory("Lunch time", "mesimeri"), null, true, TIMEZONE);
 new CronJob(SUPPER, noteFactory("Supper time", "bradi"), null, true, TIMEZONE);
