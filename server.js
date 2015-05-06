@@ -46,7 +46,7 @@ function noteFactory(title, time) {
     };
 }
 
-function requestMeals() {
+function requestSchedule() {
     request({
         url: process.env.SITISI_API_URL,
         json: true
@@ -57,7 +57,7 @@ function requestMeals() {
             // Workaround for a bug where the API jumps between two dates.
             // TODO: This should go away.
             if (!getMeal("bradi")) {
-                requestMeals();
+                requestSchedule();
                 return;
             }
             console.log("fetched schedule from", process.env.SITISI_API_URL);
@@ -65,7 +65,7 @@ function requestMeals() {
     });
 }
 
-requestMeals();
-new CronJob(MORNING, requestMeals, null, true, TIMEZONE);
+requestSchedule();
+new CronJob(MORNING, requestSchedule, null, true, TIMEZONE);
 new CronJob(LUNCH, noteFactory("Lunch time", "mesimeri"), null, true, TIMEZONE);
 new CronJob(SUPPER, noteFactory("Supper time", "bradi"), null, true, TIMEZONE);
