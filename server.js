@@ -9,6 +9,18 @@ var TIMEZONE = "Europe/Athens";
 
 var schedule;
 
+function noteFactory(title, attr) {
+    return function() {
+        pusher.note("", title, schedule["shmera"][attr]["kyriosPiata"], function(err, res) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log(res);
+        });
+    };
+}
+
 request({
     url: process.env.SITISI_API_URL,
     json: true
@@ -18,26 +30,5 @@ request({
     }
 });
 
-new CronJob(LUNCH, function() {
-    pusher.note("",
-        "Lunch time",
-        schedule["shmera"]["mesimeri"]["kyriosPiata"], function(err, res) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log(res);
-    });
-}, null, true, TIMEZONE);
-
-new CronJob(SUPPER, function() {
-    pusher.note("",
-        "Supper time",
-        schedule["shmera"]["bradi"]["kyriosPiata"], function(err, res) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log(res);
-    });
-}, null, true, TIMEZONE);
+new CronJob(LUNCH, noteFactory("Lunch time", "mesimeri"), null, true, TIMEZONE);
+new CronJob(SUPPER, noteFactory("Supper time", "bradi"), null, true, TIMEZONE);
