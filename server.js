@@ -1,8 +1,7 @@
-var config = require("./config.json");
 var request = require("request");
 var PushBullet = require("pushbullet");
 var CronJob = require("cron").CronJob;
-var pusher = new PushBullet(config.PUSHBULLET_ACCESS_TOKEN);
+var pusher = new PushBullet(process.env.PUSHBULLET_ACCESS_TOKEN);
 
 var LUNCH = "0 0 11 * * *";
 var SUPPER = "0 0 17 * * *";
@@ -11,7 +10,7 @@ var TIMEZONE = "Europe/Athens";
 var schedule;
 
 request({
-    url: config.SITISI_API_URL,
+    url: process.env.SITISI_API_URL,
     json: true
 }, function(err, res, body) {
     if (!err && res.statusCode == 200) {
