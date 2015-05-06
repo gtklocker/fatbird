@@ -20,10 +20,9 @@ function getMeal(time) {
     else if (schedule["ayrio"]["day"] == dateString) {
         realDay = "ayrio";
     }
-
-    if (!realDay) {
+    else {
         // API is seriously outdated!
-        return undefined;
+        return null;
     }
 
     return schedule[realDay][time]["kyriosPiata"];
