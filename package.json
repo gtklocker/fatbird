@@ -1,9 +1,9 @@
 {
   "name": "fatbird",
-  "description": "Schedule for eating at UOI",
+  "description": "Get automatically notified with the available meals at the cafeteria of the University of Ioannina",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/gtklocker/fatbird.git"
   },
   "version": "0.0.1",
   "dependencies": {
