@@ -76,4 +76,4 @@ function requestSchedule() {
 requestSchedule();
 new CronJob(MORNING, requestSchedule, null, true, TIMEZONE);
 new CronJob(LUNCH, smsFactory("Καλημέρα! Σήμερα η λέσχη θα έχει", "mesimeri"), null, true, TIMEZONE);
-new CronJob(SUPPER, smsFactory("Καλο σου απόγευμα! H λέσχη τώρα θα έχει", "bradi"), null, true, TIMEZONE);
+new CronJob(SUPPER, smsFactory("Καλό σου απόγευμα! H λέσχη τώρα θα έχει", "bradi"), null, true, TIMEZONE);
